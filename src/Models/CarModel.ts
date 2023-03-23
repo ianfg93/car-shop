@@ -10,10 +10,10 @@ class CarModel {
       model: { type: String, required: true },
       year: { type: Number, required: true },
       color: { type: String, required: true },
-      status: { type: String },
-      buyValue: { type: String, required: true },
-      doorsQty: { type: String, required: true },
-      seatsQty: { type: String, required: true },
+      status: { type: Boolean },
+      buyValue: { type: Number, required: true },
+      doorsQty: { type: Number, required: true },
+      seatsQty: { type: Number, required: true },
     }, {
       versionKey: false,
     });
@@ -22,6 +22,12 @@ class CarModel {
 
   public async createCar(car: ICar): Promise<ICar> {
     return this.model.create({ ...car });
+  }
+  public async getCar(): Promise<ICar[]> {
+    return this.model.find();
+  }
+  public async getCarId(id: string): Promise<ICar | null> {
+    return this.model.findById(id);
   }
 }
 
