@@ -25,6 +25,11 @@ class CarService {
     const cars = await new CarsModel().getCarId(id);
     return this.createCarDomain(cars);
   }
+
+  async updateCarId(id: string, car: Partial<ICar>) { 
+    const cars = await new CarsModel().updateCarId(id, car);
+    return this.createCarDomain(cars);
+  }
 }
 
 export default CarService;

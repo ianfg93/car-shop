@@ -23,11 +23,17 @@ class CarModel {
   public async createCar(car: ICar): Promise<ICar> {
     return this.model.create({ ...car });
   }
+
   public async getCar(): Promise<ICar[]> {
     return this.model.find();
   }
+
   public async getCarId(id: string): Promise<ICar | null> {
     return this.model.findById(id);
+  }
+
+  public async updateCarId(id: string, car: Partial<ICar>) {
+    return this.model.findByIdAndUpdate(id, car, { new: true });
   }
 }
 
