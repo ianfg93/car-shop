@@ -10,24 +10,24 @@ class CarService {
     return null;
   }
 
-  async createCar(car: ICar) {
+  async create(car: ICar) {
     const cars = new CarsModel();
-    const newCar = await cars.createCar(car);
+    const newCar = await cars.create(car);
     return this.createCarDomain(newCar);
   }
 
-  async getCar() {
-    const cars = await new CarsModel().getCar();
+  async get() {
+    const cars = await new CarsModel().getAll();
     return cars.map((car) => this.createCarDomain(car));
   }
 
-  async getCarId(id: string) { 
-    const cars = await new CarsModel().getCarId(id);
+  async getId(id: string) { 
+    const cars = await new CarsModel().getId(id);
     return this.createCarDomain(cars);
   }
 
-  async updateCarId(id: string, car: Partial<ICar>) { 
-    const cars = await new CarsModel().updateCarId(id, car);
+  async updateId(id: string, car: Partial<ICar>) { 
+    const cars = await new CarsModel().updateId(id, car);
     return this.createCarDomain(cars);
   }
 }

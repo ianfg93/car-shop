@@ -13,21 +13,21 @@ class CarController {
     this.next = next;
     this.carService = new CarService();
   }
-  async createCar() {
+  async create() {
     const { body } = this.req;
-    const newCar = await this.carService.createCar(body);
+    const newCar = await this.carService.create(body);
     return this.res.status(201).json(newCar);
   }
 
-  async getCar() {
-    const findCar = await this.carService.getCar();
+  async getAll() {
+    const findCar = await this.carService.get();
     return this.res.status(200).json(findCar);    
   }
 
-  async getCarId() {
+  async getId() {
     try {
       const { id } = this.req.params;
-      const findCar = await this.carService.getCarId(id);
+      const findCar = await this.carService.getId(id);
 
       if (!findCar) {
         return this.res.status(404).json({ message: 'Car not found' });
@@ -39,10 +39,10 @@ class CarController {
     }
   }
 
-  async updateCarId() {
+  async updateId() {
     try {
       const { id } = this.req.params;
-      const findCar = await this.carService.updateCarId(id, this.req.body);
+      const findCar = await this.carService.updateId(id, this.req.body);
 
       if (!findCar) {
         return this.res.status(404).json({ message: 'Car not found' });
